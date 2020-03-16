@@ -15,7 +15,7 @@ import com.course.repositories.UserRepository;
 public class TesteConfig implements CommandLineRunner {
 	
 	/**
-	 * Class seeding. Populating H2 Database. Dependency Injected
+	 * Class seeding. Populating H2 Database. Dependency Injection
 	 * CommandLineRunner ~ Thread
 	 */
 	
