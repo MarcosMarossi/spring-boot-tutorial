@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.course.model.Category;
 import com.course.model.Order;
 import com.course.model.OrderStatus;
 import com.course.model.User;
+import com.course.repositories.CategoryRepository;
 import com.course.repositories.OrderRepository;
 import com.course.repositories.UserRepository;
 
@@ -29,14 +31,21 @@ public class TesteConfig implements CommandLineRunner {
 	@Autowired
 	private OrderRepository order;
 	
+	@Autowired
+	CategoryRepository category;
+	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Category cat1 = new Category(null, "Electronics"); 
+		Category cat2 = new Category(null, "Books"); 
+		Category cat3 = new Category(null, "Computers");
+		
+		category.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
 		User user1 = new User("Carlos", "(19)9988556677", "carlos@gmail.com", "pass123");
 		User user2 = new User("Magdalena", "(19)9988556677", "magdalena@gmail.com", "pass123");
 		User user3 = new User("Bianca", "(19)9988556677", "bianca@gmail.com", "pass123");
-		
-		
 		
 		Order o1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), user1, OrderStatus.WAITING_PAYMENT); 
 		Order o2 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user2, OrderStatus.CANCELED);
