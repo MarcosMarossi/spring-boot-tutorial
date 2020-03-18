@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.course.model.Order;
+import com.course.model.OrderStatus;
 import com.course.model.User;
 import com.course.repositories.OrderRepository;
 import com.course.repositories.UserRepository;
@@ -37,9 +38,9 @@ public class TesteConfig implements CommandLineRunner {
 		
 		
 		
-		Order o1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), user1); 
-		Order o2 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user2);
-		Order o3 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user3);
+		Order o1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), user1, OrderStatus.WAITING_PAYMENT); 
+		Order o2 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user2, OrderStatus.CANCELED);
+		Order o3 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user3, OrderStatus.DELIVERED);
 		
 		user.saveAll(Arrays.asList(user1, user2, user3));		
 		order.saveAll(Arrays.asList(o1,o2,o3));
