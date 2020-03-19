@@ -77,7 +77,7 @@ public class TesteConfig implements CommandLineRunner {
 		Order o1 = new Order(Instant.parse("2019-06-20T19:53:07Z"), user1, OrderStatus.WAITING_PAYMENT); 
 		Order o2 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user2, OrderStatus.CANCELED);
 		Order o3 = new Order(Instant.parse("2019-07-21T03:42:10Z"), user3, OrderStatus.DELIVERED);
-		Order o4 = new Order(Instant.parse("2019-07-14T03:22:10Z"), user3, OrderStatus.PAID);
+		Order o4 = new Order(Instant.parse("2019-07-14T03:22:10Z"), user1, OrderStatus.PAID);
 		
 		user.saveAll(Arrays.asList(user1, user2, user3));		
 		order.saveAll(Arrays.asList(o1,o2,o3,o4));
@@ -86,8 +86,9 @@ public class TesteConfig implements CommandLineRunner {
 		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice()); 
 		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice()); 
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		OrderItem oi5 = new OrderItem(o4, p2, 2, p5.getPrice());
 		
-		orderItem.saveAll(Arrays.asList(oi1, oi2,oi3, oi4));
+		orderItem.saveAll(Arrays.asList(oi1, oi2,oi3, oi4, oi5));
 		
 		Payment pay1 = new Payment(null, Instant.parse("2019-07-14T03:22:10Z"), o4 );
 		o4.setPayment(pay1);
