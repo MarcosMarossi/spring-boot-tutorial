@@ -30,20 +30,20 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 	
-	@JsonIgnore
-	private Order getOrder() {
+	@JsonIgnore 
+	public Order getOrder() {
 		return id.getOrder();
 	}
 	
-	private void setOrder(Order order) {
+	public void setOrder(Order order) {
 		id.setOrder(order);
 	}	
 	
-	private Product getProduct() {
+	public Product getProduct() {
 		return id.getProduct();
 	}
 	
-	private void setProduct(Product product) {
+	public void setProduct(Product product) {
 		id.setProduct(product);
 	}
 
