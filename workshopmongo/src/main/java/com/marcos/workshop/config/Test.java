@@ -25,5 +25,6 @@ public class Test implements CommandLineRunner {
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
 		user.saveAll(Arrays.asList(maria, alex, bob));
+		
 	}
 }
