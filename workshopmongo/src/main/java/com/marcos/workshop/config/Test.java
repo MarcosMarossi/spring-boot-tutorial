@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import com.marcos.workshop.dto.AuthorDTO;
+import com.marcos.workshop.dto.CommentDTO;
 import com.marcos.workshop.model.Post;
 import com.marcos.workshop.model.User;
 import com.marcos.workshop.repository.PostRespository;
@@ -42,6 +43,12 @@ public class Test implements CommandLineRunner {
 		Post post2 =  new Post(null, sdf.parse("19/03/2020"), "Vai viajar?", "Queria saber isso, pois combinamos de irmos juntos", new AuthorDTO(alex));
 		Post post3 =  new Post(null, sdf.parse("22/03/2020"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(bob));
 				
+		CommentDTO comment1 = new CommentDTO("Boa viagem", sdf.parse("22/03/2020"),  new AuthorDTO(alex));
+		CommentDTO comment2 = new CommentDTO("Bom dia pra você também", sdf.parse("23/03/2020"),  new AuthorDTO(maria));
+
+		post1.getComments().addAll(Arrays.asList(comment1));
+		post3.getComments().addAll(Arrays.asList(comment2));
+		
 		post.saveAll(Arrays.asList(post1,post2,post3));
 		
 		
