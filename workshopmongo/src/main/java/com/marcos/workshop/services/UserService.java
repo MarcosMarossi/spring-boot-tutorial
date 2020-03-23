@@ -15,19 +15,19 @@ import com.marcos.workshop.services.exception.ObjectNotFoundException;
 public class UserService {
 	
 	@Autowired
-	private UserRespository repoUser;
+	private UserRespository repo;
 	
 	public List<User> findAll() {
-		return repoUser.findAll();
+		return repo.findAll();
 	}
 	
 	public User findById(String id) {
-		Optional<User> user = repoUser.findById(id);
+		Optional<User> user = repo.findById(id);
 		return user.orElseThrow(() -> new ObjectNotFoundException("Object not found. Id " + id));
 	}
 	
 	public User insert(User user) {
-		return repoUser.insert(user);
+		return repo.insert(user);
 	}
 	
 	public User fromDTO (UserDTO userDto) {
@@ -36,7 +36,17 @@ public class UserService {
 	
 	public void delete(String id) {
 		findById(id);
-		repoUser.deleteById(id);
+		repo.deleteById(id);
+	}
+	
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 
+	private void updateData(User newObj, User user) {
+		newObj.setName(user.getName());
+		newObj.setEmail(user.getEmail());
+	}
 }
